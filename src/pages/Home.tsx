@@ -3,7 +3,6 @@ import { ArrowRight, Repeat2, Coins, Search, CalendarCheck, Star, TrendingUp, Us
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { useAppStore } from '@/store/AppStore'
 
 const pains = [
   { icon: '💸', title: '报班太贵', desc: '一节吉他课 200+，一个 Python 班动辄几千，兴趣还没验证就先掏空钱包。' },
@@ -19,10 +18,6 @@ const steps = [
 ]
 
 export default function Home() {
-  const { posts, swaps } = useAppStore()
-  const teachCount = posts.filter(p => p.type === 'teach').length
-  const doneCount = swaps.filter(s => s.status === 'done' || s.status === 'reviewed').length + 128
-
   return (
     <div>
       {/* Hero */}
@@ -50,9 +45,9 @@ export default function Home() {
           </div>
           <div className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4">
             {[
-              { icon: <Users className="h-5 w-5" />, num: '2,300+', label: '技能伙伴' },
-              { icon: <Repeat2 className="h-5 w-5" />, num: `${teachCount * 37}`, label: '在架技能' },
-              { icon: <TrendingUp className="h-5 w-5" />, num: `${doneCount}`, label: '完成交换' },
+              { icon: <Users className="h-5 w-5" />, num: '双向发布', label: '能教 + 想学' },
+              { icon: <Repeat2 className="h-5 w-5" />, num: '智能匹配', label: '评分可解释' },
+              { icon: <TrendingUp className="h-5 w-5" />, num: '技能币', label: '交换不吃亏' },
             ].map(s => (
               <div key={s.label} className="rounded-2xl border bg-white/70 p-4 backdrop-blur">
                 <div className="mx-auto mb-1 flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-orange-600">{s.icon}</div>
